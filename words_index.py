@@ -15,7 +15,7 @@ def main(filename):
                 location = (line_number, column_number)
                 occurrences = index.get(world, [])
                 occurrences.append(location)
-                index[world = occurrences
+                index[world] = occurrences
 
 
 
