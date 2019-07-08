@@ -37,4 +37,17 @@ class Vector2d:
     def __bytes__(self):
         return (bytes([ord(self.typecode)]) + bytes(array(self.typecode, self)))
 
+    def __format__(self, fmt_spec=''):
+        outer_fmt = '({}, {})'
+        coords = self
+        if fmt_spec.endswith('p'):
+            fmt_spec = fmt_spec[:-1]
+            outer_fmt = '<{}, {}>'
+            coords = (abs(self), self.angle())
+        components = (format(c, fmt_spec) for c in coords)
+        return outer_fmt.format(*components)
+
+    def angle(self):
+        return math.atan2(self.y, self.x)
+
 
