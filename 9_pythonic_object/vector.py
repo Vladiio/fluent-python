@@ -3,7 +3,6 @@ import math
 
 
 class Vector2d:
-    __slots__ = ('__x', '__y')
 
     typecode = 'd'
 
@@ -64,3 +63,5 @@ class Vector2d:
         return math.atan2(self.y, self.x)
 
 
+class Vector2d_slots(Vector2d):
+    __slots__ = ('__x', '__y')
