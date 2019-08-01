@@ -1,4 +1,4 @@
-import abc, random
+import abc, random, collections
 
 
 class Tombola(abc.ABC):
