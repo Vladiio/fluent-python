@@ -6,6 +6,9 @@ class Vector:
         self.x = x
         self.y = y
 
+    def __iter__(self):
+        return (c for c in (self.x, self.y))
+
     def __add__(self, another):
         return Vector(self.x + another.x, self.y + another.y)
 
@@ -20,3 +23,6 @@ class Vector:
 
     def __bool__(self):
         return bool(self.x or self.y)
+
+    def __eq__(self, other):
+        return tuple(self) == tuple(other)

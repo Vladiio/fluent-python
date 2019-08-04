@@ -45,10 +45,9 @@ class BingoCage(Tombola):
     def pick(self):
         try:
             return self._items.pop()
-        except IndexError:
-            raise LookupError('pick from empty BingoCage')
+        except IndexError: raise LookupError('pick from empty BingoCage')
 
-    def __cal__(self):
+    def __call__(self):
         self.pick()
 
 
@@ -94,5 +93,26 @@ class TomboList(list):
 
     def inspect(self):
         return tuple(sorted(self))
+
+
+class AddableBingoCage(BingoCage):
+
+    def __iter__(self):
+        return iter(self._items)
+
+    def __add__(self, other):
+        if isinstance(other, BingoCage):
+            return AddableBingoCage(list(self) + list(other))
+
+        return NotImplemented
+
+    def __iadd__(self, other):
+        try:
+            self._items += list(other)
+        except TypeError:
+            return NotImplemented
+        else:
+            return self
+
 
 
