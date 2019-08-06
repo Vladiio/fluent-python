@@ -26,10 +26,9 @@ class SentenceIterator:
 class Sentence:
     def __init__(self, text):
         self.text = text
-        self.words = RE_WORLD.findall(text)
 
-    # def __iter__(self):
-        # return iter(self.words)
+    def __iter__(self):
+        return (match.group() for match in RE.RE_WORLD.finditer(self.text))
 
     def __getitem__(self, index):
         return self.words[index]
@@ -40,7 +39,3 @@ class Sentence:
     def __repr__(self):
         return 'Sentence({!s})'.format(reprlib.repr(self.text))
 
-
-def sentence_generator(sentence):
-    for world in sentence:
-        yield world
