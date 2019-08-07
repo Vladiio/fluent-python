@@ -28,13 +28,13 @@ class Sentence:
         self.text = text
 
     def __iter__(self):
-        return (match.group() for match in RE.RE_WORLD.finditer(self.text))
+        return (match.group() for match in RE_WORLD.finditer(self.text))
 
-    def __getitem__(self, index):
-        return self.words[index]
+    # def __getitem__(self, index):
+    #     return self.words[index]
 
-    def __len__(self):
-        return len(self.words)
+    # def __len__(self):
+    #     return len(self.words)
 
     def __repr__(self):
         return 'Sentence({!s})'.format(reprlib.repr(self.text))
